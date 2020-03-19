@@ -12,16 +12,29 @@ var hoursData = {
 // check to see if there's anything in local storage
 // update hoursData if localstorage isn't empty
 var currentHour = parseInt(moment().format("H"))
+console.log(currentHour)
+// create a variable that stores the current time
+var currentTime = (moment().format("MMMM Do YYYY, h:mm:ss a"))
+console.log(currentTime)
+// create a variable that stores a DIV
+var divTime = $("<div>").text(currentTime)
+// create a variable that puts the current time inside the div|
+// append the divTime to the html
+$("#currentDay").append(divTime)
+ console.log(divTime)
 
+// put the
 
-
+// $(".lead").moment().format('MMMM Do YYYY, h:mm:ss a');
 
 var timeBlockElements = $(".time-block")
 
 // for each hour
 
 timeBlockElements.each(function(){
+
     var timeBlock = parseInt(this.id.split("-")[1]);
+    
 // get the hour of the block
     var description = hoursData[timeBlock.toString()];
 
