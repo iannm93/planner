@@ -11,19 +11,13 @@ var divTime = $("<div>").text(currentTime)
 $("#currentDay").append(divTime)
 
 
-
-
-
-
-
-
 // for each hour
 $(".time-block").each(function(){
     
 
     var timeBlock = parseInt(this.id.split("-")[1]);
-    
-
+ 
+   
     if (timeBlock < currentHour){
         // give past class to hour
         $(this).addClass("past")
@@ -47,6 +41,7 @@ $(".time-block").each(function(){
 $(".saveBtn").on("click", function () {
     
     
+    // giving the save button's parent an attr
     var parentID = $(this).parent().attr("id");
     var descriptionText = $(this).siblings(".description").val();
     localStorage.setItem(parentID, JSON.stringify(descriptionText));
