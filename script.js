@@ -56,3 +56,15 @@ timeBlockElements.each(function(){
         $(this).addClass("future")
     }
 })
+
+
+// append the text they type in the form to the form
+// also, when they clcik save,
+// save it to local storage
+$(".saveBtn").on("click", function () {
+    var descriptionText = $(this).siblings(".description").val();
+    localStorage.setItem("descriptionText", JSON.stringify(descriptionText));
+    console.log(descriptionText) //add parent's id
+});
+var descriptionInput = JSON.parse(localStorage.getItem("descriptionText")); //add parent's id
+$(".description").text(descriptionInput);
