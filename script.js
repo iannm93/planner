@@ -1,27 +1,27 @@
-var hoursData = {
-    9:'',
-    10: '',
-    11: '',
-    12: '' ,
-    13: '',
-    14: '',
-    15: '',
-    16: '',
-    17: ''
-}
+// var hoursData = {
+//     9:'',
+//     10: '',
+//     11: '',
+//     12: '' ,
+//     13: '',
+//     14: '',
+//     15: '',
+//     16: '',
+//     17: ''
+// }
 // check to see if there's anything in local storage
 // update hoursData if localstorage isn't empty
 var currentHour = parseInt(moment().format("H"))
-console.log(currentHour)
+
 // create a variable that stores the current time
 var currentTime = (moment().format("MMMM Do YYYY, h:mm:ss a"))
-console.log(currentTime)
+
 // create a variable that stores a DIV
 var divTime = $("<div>").text(currentTime)
 // create a variable that puts the current time inside the div|
 // append the divTime to the html
 $("#currentDay").append(divTime)
- console.log(divTime)
+ 
 
 // put the
 
@@ -36,11 +36,11 @@ timeBlockElements.each(function(){
     var timeBlock = parseInt(this.id.split("-")[1]);
     
 // get the hour of the block
-    var description = hoursData[timeBlock.toString()];
+    // var description = hoursData[timeBlock.toString()];
 
     // in hours data object
     // get the text area 
-    $(this).find("textarea").val(description);
+    // $(this).find("textarea").val(description);
 
     // find current time
     // if current
@@ -58,13 +58,21 @@ timeBlockElements.each(function(){
 })
 
 
-// append the text they type in the form to the form
-// also, when they clcik save,
-// save it to local storage
 $(".saveBtn").on("click", function () {
+    
+    
+    var parentID = $(this).parent().attr("id");
     var descriptionText = $(this).siblings(".description").val();
-    localStorage.setItem("descriptionText", JSON.stringify(descriptionText));
-    console.log(descriptionText) //add parent's id
+    localStorage.setItem(parentID, JSON.stringify(descriptionText));
+    
+    // save it to local storage
 });
-var descriptionInput = JSON.parse(localStorage.getItem("descriptionText")); //add parent's id
-$(".description").text(descriptionInput);
+$(".time-block").each(function() {
+    var myId = this.id;
+    var textInput = JSON.parse(localStorage.getItem(myId));
+    
+    // append the text they type in the form to the form
+    // also, when they clcik save,
+    $(this).find("textarea").val(textInput)
+        
+  });
