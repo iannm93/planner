@@ -1,16 +1,4 @@
-// var hoursData = {
-//     9:'',
-//     10: '',
-//     11: '',
-//     12: '' ,
-//     13: '',
-//     14: '',
-//     15: '',
-//     16: '',
-//     17: ''
-// }
-// check to see if there's anything in local storage
-// update hoursData if localstorage isn't empty
+
 var currentHour = parseInt(moment().format("H"))
 
 // create a variable that stores the current time
@@ -21,29 +9,20 @@ var divTime = $("<div>").text(currentTime)
 // create a variable that puts the current time inside the div|
 // append the divTime to the html
 $("#currentDay").append(divTime)
- 
 
-// put the
 
-// $(".lead").moment().format('MMMM Do YYYY, h:mm:ss a');
 
-var timeBlockElements = $(".time-block")
+
+
+
+
 
 // for each hour
-
-timeBlockElements.each(function(){
+$(".time-block").each(function(){
+    
 
     var timeBlock = parseInt(this.id.split("-")[1]);
     
-// get the hour of the block
-    // var description = hoursData[timeBlock.toString()];
-
-    // in hours data object
-    // get the text area 
-    // $(this).find("textarea").val(description);
-
-    // find current time
-    // if current
 
     if (timeBlock < currentHour){
         // give past class to hour
@@ -55,6 +34,13 @@ timeBlockElements.each(function(){
         // give future class to hour
         $(this).addClass("future")
     }
+    // stores my element's ID
+    var myId = this.id;
+    // gets information local storage
+    var textInput = JSON.parse(localStorage.getItem(myId));
+   
+    // finds the text area of child element and sets text value
+    $(this).find("textarea").val(textInput)
 })
 
 
@@ -67,12 +53,4 @@ $(".saveBtn").on("click", function () {
     
     // save it to local storage
 });
-$(".time-block").each(function() {
-    var myId = this.id;
-    var textInput = JSON.parse(localStorage.getItem(myId));
-    
-    // append the text they type in the form to the form
-    // also, when they clcik save,
-    $(this).find("textarea").val(textInput)
-        
-  });
+   
